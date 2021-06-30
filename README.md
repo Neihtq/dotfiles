@@ -3,6 +3,7 @@
 My essentials:
 
 - i3wm
+- zsh
 - termite
 - polybar
 - picom
