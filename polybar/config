@@ -1,0 +1,340 @@
+[bar/upper]
+width = 100%
+height = 22
+offset-y = 0
+offset-x = 0
+
+padding-left = 0 
+padding-right = 1 
+
+border-top-size = 4
+border-bottom-size = 5
+border-right-size = 10
+border-left-size = 10
+
+font-0 = Hack:size=16;3
+font-1 = "Font Awesome 5 Free:style=Solid:pixelsize=12;3"
+font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=12;3"
+font-3 = "Font Awesome 5 Brands:pixelsize=12;3"
+font-4 = TerminessTTF Nerd Font:size=12:antialias=true;4
+font-5 = FontAwesome:pixelsize=1:antialias=true;4
+font-6 = MaterialIcons:size=12:antialias=true;4
+font-7 = Fira Sans:size=12:weight=regular;4
+font-8 = TakaoPGothic:size=12:weight=regular;4
+font-9 = Weather Icons:size=16;1
+
+background = #002f343f
+foreground = #ffffff
+
+bottom = true
+monitor = ${env:MONITOR:}
+override-redirect = false
+
+modules-left = title
+modules-center = i3 
+modules-right = wlan weather
+
+[module/weather]
+type = custom/script
+exec = /home/thien/.config/polybar/weather.sh
+
+interval = 600
+label-font = 12
+
+[module/arch]
+type = custom/script
+exec = ~/.config/polybar/archupdate.sh
+interval = 600
+
+[module/i3]
+type = internal/i3
+font-i3  = 5
+pin-workspaces = true
+strip-wsnumbers = true
+index-sort = true
+enable-click = true
+enable-scroll = true
+wrapping-scroll = false
+reverse-scroll = true
+fuzzy-match = true
+ws-icon-0 = 1 
+ws-icon-1 = 2
+ws-icon-2 = 3
+ws-icon-3 = 4
+ws-icon-4 = 5
+ws-icon-5 = 6
+ws-icon-6 = 7
+ws-icon-7 = 8
+ws-icon-8 = 9
+ws-icon-9 = 10
+
+label-unfocused-foreground = #afafaf
+label-focused-foreground = #00FFFF
+label-urgent-foreground = #ff0000
+
+[module/title]
+type = internal/xwindow
+label = "%title:0:90:...% "
+title-font = 2
+format-background = 002f343f
+format-prefix = "  "
+format-prefix-foreground = #808000
+ 
+[module/pkg]
+type = custom/script
+exec = bash ~/.config/polybar/checkupdates.sh
+format-padding = 1
+click-left = kit
+
+
+
+
+
+[bar/white]
+
+;------------;
+; DIMENSIONS ;
+;------------;
+
+
+
+width = 100%
+height = 25
+offset-y = 0
+offset-x = 0
+monitor = ${env:MONITOR:}
+
+border-top-size = 5
+border-bottom-size = 0
+border-right-size = 10
+border-left-size = 10
+
+;----------;
+; LOCATION ;
+;----------;
+
+bottom = false
+;
+override-redirect = false
+
+;-------;
+; FONTS ;
+;-------;
+
+font-0 = Hack:size=16;3
+font-1 = "Font Awesome 5 Free:style=Solid:pixelsize=15;3"
+font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=15;3"
+font-3 = "Font Awesome 5 Brands:pixelsize=15;3"
+font-4 = TerminessTTF Nerd Font:size=14:antialias=true;4
+font-5 = FontAwesome:pixelsize=14:antialias=true;4
+font-6 = MaterialIcons:size=14:antialias=true;4
+font-7 = Fira Sans:size=14:weight=regular;4
+font-8 = TakaoPGothic:size=14:weight=regular;4
+
+;--------;
+; COLORS ;
+;--------;
+
+
+
+background = #002f343f
+foreground = #ffffff
+
+;---------------;
+; MISCELLANEOUS ;
+;---------------;
+
+fixed-center = true
+padding-left = 2 
+padding-right = 2
+module-margin = 1.5
+
+modules-left = battery volume
+modules-center = date time
+modules-right = temp cpu coreuse filesystem memory
+
+tray-position = none
+tray-detached = true
+
+;---------;
+; MODULES ;
+;---------;
+
+[module/temp]
+type = internal/temperature
+thermal-zone = 0
+warn-temp = 70
+format = <label>
+format-padding = 0
+label-foreground = #ffffff
+label-background = #002f343f
+label-warn-foreground = #ff0000
+label = "  %temperature-c% "
+label-warn = "  %temperature-c% "
+
+[module/memory]
+type = internal/memory
+format = <label> <bar-used>
+format-padding = 1
+format-background = #002f343f
+format-foreground = #ffffff
+label =  %percentage_used%%
+bar-used-width = 5
+bar-used-indicator = 
+bar-used-indicator-foreground = #808000
+bar-used-fill = 
+bar-used-fill-foreground = #808000
+bar-used-empty = 
+bar-used-empty-foreground = #f9f9fa
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+mount-0 = /
+label-mounted = "  %mountpoint%:%percentage_used%% "
+label-mounted-foreground = #FFFFFF
+label-mounted-background = 002f343f
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = #808000
+label-unmounted-background = 002f343f
+ 
+
+[module/time]
+type = internal/date
+
+interval = 1.0
+
+date = |   %I:%M %p |
+
+[module/date]
+type = internal/date
+date = |  %e %B - %A 
+label = %date%
+
+
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = ADP1
+
+poll-interval = 1
+
+full-at = 99
+
+label-discharging = %percentage%%
+label-charging = %percentage%%
+label-full = %percentage%%
+format-discharging = <ramp-capacity> <label-discharging>
+format-full = <ramp-capacity> <label-full>
+format-charging =  <label-charging>
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+[module/volume]
+type = internal/alsa
+format-volume = <label-volume> <bar-volume>
+format-volume-underline = #ffffff
+format-volume-padding = 1
+label-volume = 墳
+label-muted = 婢
+label-muted-underline = #ffffff
+label-muted-padding = 1
+bar-volume-width = 8
+bar-volume-gradient = false
+bar-volume-indicator = 
+bar-volume-indicator-foreground = #808000
+bar-volume-indicator-font = 2
+bar-volume-fill = =
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = #ffffff
+
+[module/backlight]
+type = internal/xbacklight
+card = intel_backlight
+enable-scroll = true
+format = <label> <bar>
+label-foreground = #ffffff
+label-background = #002f343f
+format-padding = 1
+label = 
+bar-width = 8
+bar-indicator = 
+bar-indicator-background = #002f343f
+bar-indicator-foreground = #808000
+bar-indicator-font = 2
+bar-fill = =
+bar-fill-font = 2
+bar-fill-background = #002f343f
+bar-fill-foreground = #ffffff
+bar-empty = ─
+bar-empty-font = 2
+bar-empty-background = #002f343f
+bar-empty-foreground = #ffffff
+label-indicator-background = #002f343f
+label-indicator-foreground = #ffffff
+
+
+[module/wlan]
+type = internal/network
+
+interface = wlp82s0
+
+interval = 5
+
+label-connected =  %essid% 
+label-disconnected =  Not Connected 
+label-connected-padding-right = 2
+label-deisconnected-padding-right = 2
+
+[module/cpu]
+type = internal/cpu
+interval = 0.08
+format-background = #002f343f
+format-foreground = #ffffff
+label =  %percentage%%
+
+[module/coreuse]
+type = internal/cpu
+interval = 0.08
+format-background = #002f343f
+format-foreground = #ffffff
+format = " <ramp-coreload>"
+format-padding = 1
+ramp-coreload-0 = ▁
+ramp-coreload-0-foreground = #808000
+ramp-coreload-1 = ▂
+ramp-coreload-1-foreground = #ffffff
+ramp-coreload-2 = ▃
+ramp-coreload-2-foreground = #808000
+ramp-coreload-3 = ▄
+ramp-coreload-3-foreground = #ffffff
+ramp-coreload-4 = ▅
+ramp-coreload-4-foreground = #808000
+ramp-coreload-5 = ▆
+ramp-coreload-5-foreground = #ffffff
+ramp-coreload-6 = ▇
+ramp-coreload-6-foreground = #808000
+ramp-coreload-7 = █
+ramp-coreload-7-foreground = #ffffff
+ramp-coreload-font = 3
+
+
+[module/network]
+type = internal/network
+interface = wlp82s0
+label-connected =  %downspeed% |  %upspeed%
+
+[bar/float]
+
+inherit = bar/white
+
+background = #ffffff
+
+tray-position = center
