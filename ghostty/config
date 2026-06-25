@@ -1,0 +1,19 @@
+# Ghostty configuration
+# Fix backspace and other key issues
+
+# Terminal type
+term = xterm-256color
+
+# Font settings
+# font-family = "Menlo"
+font-family = "Lilex Regular"
+font-size = 14
+
+# Colors
+background = #282c34
+foreground = #abb2bf
+
+# Cursor
+cursor-style = block
+
+theme = Brogrammer
